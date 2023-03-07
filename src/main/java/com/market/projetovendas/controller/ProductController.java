@@ -44,7 +44,7 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getEmployeeById(@PathVariable Long id) {
 		Product product = productRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Product not exist with id :" + id));
 		return ResponseEntity.ok(product);
 	}
 
@@ -52,7 +52,7 @@ public class ProductController {
 	@PutMapping("/products/{id}")
 	public ResponseEntity<Product> updateEmployee(@PathVariable Long id, @RequestBody Product productDetails){
 		Product product = productRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Product not exist with id :" + id));
 		
         product.setName(productDetails.getName());
         product.setGender(productDetails.getGender());
@@ -66,7 +66,7 @@ public class ProductController {
 	@DeleteMapping("/products/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
 		Product product = productRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Product not exist with id :" + id));
 		
         productRepository.delete(product);
 		Map<String, Boolean> response = new HashMap<>();
